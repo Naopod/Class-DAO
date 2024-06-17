@@ -1,15 +1,12 @@
-# Class DAO Project - Dauphine 24 Digital Economics
 
-### 1. Project Description
+# Class DAO Project - Dauphine 2024 Digital Economics
 
-The Digital Economics DAO projects consists in deploying our own ERC standard onto the testnet.
+The DE ClimateDAO project consists in deploying our own ERC standard onto the testnet. This work is realised in a one week period and is executed under the Software Development Life Cycle framework. All students work in the same repository and are divided into 3 groups, the DevOps, Governance, Token teams.
 
-This work is realised in a one week period and is executed under the Software Development Life Cycle framework. 
 
-All students work in the same repository and are divided into 3 groups, the DevOps, Gouvernance, Token teams.
+### 1. Project Description - ClimateDAO
 
-Discussions about the topic, token, etc. are ongoing so further information will be uploaded soon...
-
+The DAO serves as a governance system for a Model UN focused on Climate Change. Using ~~ERC 777 standard~~ ERC 20 with additional functionalities, it enables token transfer, voting, and delegation. The annual sessions assess climate progress without binding agreements. Participants allocate 100 tokens to vote on proposals. A 24-hour reflection period allows amendments. Approval requires a simple majority. Replicating UN COP, it employs Quadratic voting, which escalates token costs: 1 vote = 1 token, 2 votes = 4 tokens, 3 votes = 9 tokens, incentivizing focus on critical issues. ++ rewards
 
 ### 2. Installation and Execution
 
@@ -80,3 +77,20 @@ forge test --list --json --match-test "testFail*" | tail -n 1 | json_pp
 
 More information on the tests with Foundry are available [here](https://book.getfoundry.sh/reference/forge/forge-test)
 
+#### 2.3 Summary of tests
+While a list of basic tests have been provided for both contract, they do not test all required potential vulnerabilities, hence we do not recommend relying on them.
+
+### 3. Contract Address
+MyToken (MTK): ETHERSCAN TOKEN CONTRACT (WITH 18 DECIMALS) [0x19B46757a8b27BA691e2997b06b2B262cDAA5286](https://sepolia.etherscan.io/address/0x19B46757a8b27BA691e2997b06b2B262cDAA5286)
+
+MAX TOTAL SUPPLY: 1,000 MTK
+
+ProposalVoting: [0x2e9B220B4Ad6E1C3584Fc0B2a2e7639446DB8BaA](https://sepolia.etherscan.io/address/0x2e9B220B4Ad6E1C3584Fc0B2a2e7639446DB8BaA)
+
+If you would like to deploy it, you can use the following command
+
+```
+forge create --rpc-url https://ethereum-sepolia-rpc.publicnode.com --private-key YOURPRIVATEKEY --etherscan-api-key YOURETHERSCANAPIKEY --verify Token.sol:MyToken 
+
+forge create --rpc-url https://ethereum-sepolia-rpc.publicnode.com --private-key YOURPRIVATEKEY --etherscan-api-key YOURETHERSCANAPIKEY --verify Governance.sol:ProposalVoting 
+```
