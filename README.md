@@ -1,96 +1,24 @@
+# Class-Dao-Project
 
-# Class DAO Project - Dauphine 2024 Digital Economics
+# MyToken Contract
 
-The DE ClimateDAO project consists in deploying our own ERC standard onto the testnet. This work is realised in a one week period and is executed under the Software Development Life Cycle framework. All students work in the same repository and are divided into 3 groups, the DevOps, Governance, Token teams.
+This is a Solidity smart contract for the creation and management of a token called MyToken (MTK) based on the ERC20 standard. The contract allows for delegation and revocation of voting power associated with tokens and includes functionalities for banning addresses from participating in voting.
 
+## Features
+-Implements ERC20 token standard.
+-Extends Ownable contract from OpenZeppelin for access control.
+- Allows delegation and revocation of voting power associated with tokens.
+- Includes events for delegation, voting, reward minting, and address banning.
+- Voters can receive rewards based on their voting power in the DAO.
 
-### 1. Project Description - ClimateDAO
+## Contract Details
 
-The DAO serves as a governance system for a Model UN focused on Climate Change. Using ~~ERC 777 standard~~ ERC 20 with additional functionalities, it enables token transfer, voting, and delegation. The annual sessions assess climate progress without binding agreements. Participants allocate 100 tokens to vote on proposals. A 24-hour reflection period allows amendments. Approval requires a simple majority. Replicating UN COP, it employs Quadratic voting, which escalates token costs: 1 vote = 1 token, 2 votes = 4 tokens, 3 votes = 9 tokens, incentivizing focus on critical issues. ++ rewards
-
-### 2. Installation and Execution
-
-*Forge* is a state-of-the-art package for running tests, wrting codes and debugging it in Solidity environment.
-
-
-#### 2.1 Download Forge
-You can use *Forge* through a wider tool named *Foundry*. Here are the steps to install it into your computer. Open your terminal and follow these steps :
-
-Create a new repository named Foundry:
-```
-mkdir foundry
-```
-
-Enter into this new repository:
-```
-cd foundry
-```
-
-Verify the connectivity of Foundry with our system:
-```
-curl -L https://foundry.paradigm.xyz | bash
-```
-
-Let Bash re-read the file:
-```
-source ~/.bashrc 
-```
-
-Install Foundry :
-```
-foundryup
-```
-
-More information about how to install Foundry are available [here](https://ethereum-blockchain-developer.com/2022-06-nft-truffle-hardhat-foundry/14-foundry-setup/).
+- MyToken: A custom ERC20 token contract with voting power delegation and banning of addresses.
+- votingPower: A mapping that stores the voting power of each address.
+- bannedAddresses: A mapping that stores whether an address is banned from voting.
+- Delegate: An event that is emitted when voting power is delegated.
+- Vote: An event that is emitted when a vote is cast.
+- RewardMinted: An event that is emitted when rewards are minted for a voter.
+- AddressBanned: An event that is emitted when an address is banned from voting.
 
 
-#### 2.2 Make tests with Forge
-
-Here are some examples of how to run tests with *Forge* :
-
-Run the tests:
-```
-forge test
-```
-
-Open a test in the debugger:
-```
-forge test --debug testSomething
-```
-
-Generate a gas report:
-```
-forge test --gas-report
-```
-
-Only run tests in `test/Contract.t.sol in the BigTest contract that start with testFail:
-```
-forge test --match-path test/Contract.t.sol --match-contract BigTest \ --match-test "testFail*"
-```
-
-List tests in desired format
-```
-forge test --list
-forge test --list --json
-forge test --list --json --match-test "testFail*" | tail -n 1 | json_pp
-```
-
-More information on the tests with Foundry are available [here](https://book.getfoundry.sh/reference/forge/forge-test)
-
-#### 2.3 Summary of tests
-While a list of basic tests have been provided for both contract, they do not test all required potential vulnerabilities, hence we do not recommend relying on them.
-
-### 3. Contract Address
-MyToken (MTK): ETHERSCAN TOKEN CONTRACT (WITH 18 DECIMALS) [0x19B46757a8b27BA691e2997b06b2B262cDAA5286](https://sepolia.etherscan.io/address/0x19B46757a8b27BA691e2997b06b2B262cDAA5286)
-
-MAX TOTAL SUPPLY: 1,000 MTK
-
-ProposalVoting: [0x2e9B220B4Ad6E1C3584Fc0B2a2e7639446DB8BaA](https://sepolia.etherscan.io/address/0x2e9B220B4Ad6E1C3584Fc0B2a2e7639446DB8BaA)
-
-If you would like to deploy it, you can use the following command
-
-```
-forge create --rpc-url https://ethereum-sepolia-rpc.publicnode.com --private-key YOURPRIVATEKEY --etherscan-api-key YOURETHERSCANAPIKEY --verify Token.sol:MyToken 
-
-forge create --rpc-url https://ethereum-sepolia-rpc.publicnode.com --private-key YOURPRIVATEKEY --etherscan-api-key YOURETHERSCANAPIKEY --verify Governance.sol:ProposalVoting 
-```
